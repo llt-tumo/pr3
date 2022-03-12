@@ -1,33 +1,5 @@
-class Grass {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.multiply = 0;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-    }
-    chooseCell(character) {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
+class Grass extends LivingGreature {
+
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
@@ -48,12 +20,10 @@ class Grass {
 
 
 }
-class GrassEater {
+class GrassEater extends LivingGreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
+        super(x, y, index);
         this.energy = 5;
-        this.index = index;
 
     }
     getNewCoordinates() {
@@ -71,17 +41,8 @@ class GrassEater {
 
 
     chooseCell(character) {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        this.getNewCoordinates();
+        return super.chooseCell(character);
     }
     move() {
         this.getNewCoordinates();
@@ -107,7 +68,6 @@ class GrassEater {
     }
     eat() {
         var newCell = random(this.chooseCell(1));
-        var newCell1 = random(this.chooseCell(5));
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -172,11 +132,9 @@ class GrassEater {
 
 
 }
-class Predator {
+class Predator extends LivingGreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.energy = 5;
 
     }
@@ -194,17 +152,8 @@ class Predator {
     }
 
     chooseCell(character) {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        this.getNewCoordinates();
+        return super.chooseCell(character);
     }
     move() {
         this.getNewCoordinates();
@@ -272,11 +221,9 @@ class Predator {
 
 
 }
-class Hunter {
+class Hunter extends LivingGreature {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+        super(x, y, index);
         this.life = 5
 
     }
@@ -294,17 +241,8 @@ class Hunter {
     }
 
     chooseCell(character) {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        this.getNewCoordinates();
+        return super.chooseCell(character);
     }
     move() {
         this.getNewCoordinates();
@@ -383,54 +321,4 @@ class Hunter {
 
 
 
-class BadGrass {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.multiply = 0;
-
-    }
-    getNewCoordinates() {
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-    }
-    chooseCell(character) {
-        this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
-    mul() {
-        this.multiply++;
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
-
-        if (newCell && this.multiply >= 10) {
-            var newX = newCell[0];
-            var newY = newCell[1];
-            matrix[newY][newX] = 5;
-
-            var newBadGrass = new BadGrass(newX, newY, 1);
-            badgrassArr.push(newBadGrass);
-            this.multiply = 0;
-        }
-    }
-}
 

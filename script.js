@@ -7,22 +7,19 @@ for (var Y = 0; Y < n; Y++) {
     matrix[Y] = []
     for (var X = 0; X < m; X++) {
         var k = Math.floor(Math.random() * 100);
-        if(k >= 0 && k < 50){
+        if(k >= 0 && k < 30){
             matrix[Y][X] = 1;
         }
-        else if(k >= 50 && k < 60){
+        else if(k >= 30 && k < 50){
             matrix[Y][X] = 2;
         }
-        else if(k >= 60 && k < 70){
+        else if(k >= 50 && k < 60){
             matrix[Y][X] = 3;
         }
-        else if(k >= 70 && k < 80){
+        else if(k >= 60 && k < 70){
             matrix[Y][X] = 4;
         }
-        else if(k >= 80 && k < 90){
-            matrix[Y][X] = 5;
-        }
-        else if(k >= 90 && k < 100){
+        else if(k >= 70 && k < 100){
             matrix[Y][X] = 0;
         }
     }
@@ -99,12 +96,6 @@ function draw() {
 
 
             }
-            else if (matrix[I][J] ==5) {
-                fill("#004000");
-                rect(J * side, I * side, side, side);
-
-
-            }
             else if(matrix[I][J] == 0){
                 fill('grey');
                 rect(J * side, I * side, side, side);
@@ -131,8 +122,5 @@ function draw() {
     }
     for (var i in HunterArr) {
         try{HunterArr[i].kill();}catch(err){continue};  
-    }
-    for (var i in badgrassArr) {
-        try{badgrassArr[i].mul();}catch(err){continue};
     }
 }
