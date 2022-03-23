@@ -1,13 +1,90 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Final</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
-    <script src='final.js'></script>
-    <script src='script.js'></script>
-    <script src='livingCreature.js'></script>
-</head>
-<body>
-    
-</body>
+<html lang="en">
+  <head>
+    <title>kill me</title>
+    <meta charset="utf8" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+    <script src="final.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <style>
+      canvas {
+        display: block;
+        margin: 0 auto;
+      }
+
+      div {
+        display: inline-block;
+      }
+
+      h1 {
+        padding: 20px;
+        text-align: center;
+      }
+
+      body {
+        font-family: "Noto Sans", sans-serif !important;
+      }
+    </style>
+  </head>
+  <body>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <h1>Prog 3</h1>
+        </tr>
+        <tr>
+          <h1>Lilit Mkhitaryan</h1>
+        </tr>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Color</th>
+          <th scope="col">Desc</th>
+          <th scope="col">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td scope="row" style="background-color: green"></td>
+          <td>This is grass. It multiplies. Thats it. Thats what it does.</td>
+          <td id="grassCount"></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td scope="row" style="background-color: yellow"></td>
+          <td>
+            This is grasseater. It eats grass (I mean what did you expect). It
+            multiplies itself when eats 5 blocks of grass and dies if it doesn't.
+          </td>
+          <td id="grassEaterCount"></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td scope="row" style="background-color: red"></td>
+          <td>
+            This is predator. It does literally the same thing as grasseater but
+            it eats grasseaters instead.
+          </td>
+          <td id="predatorCount"></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td scope="row" style="background-color: brown"></td>
+          <td>
+            This bad boi is hunter. It kills both grasseater and predator.
+          </td>
+          <td id="predatorCount"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button onclick="kill()">Clear</button>
+
+  </body>
 </html>
